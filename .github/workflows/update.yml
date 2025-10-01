@@ -1,1 +1,19 @@
+name: Update Playlist
 
+on:
+  workflow_dispatch:  # manuel tetikleme
+  schedule:
+    - cron: '0 * * * *'  # her saat başı
+
+jobs:
+  update-playlist:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Run m3u8.sh
+        run: |
+          chmod +x ./m3u8.sh
+          ./m3u8.sh
+        shell: bash
